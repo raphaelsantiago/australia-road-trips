@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07152d" />
+  <title>Royal Roads | Perth to Adelaide Family Adventure</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top"><span class="crest">♛</span><span><strong>Royal Roads</strong><em>Family Adventure</em></span></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="active" href="#top">Dashboard</a>
+      <a href="#options">Itineraries</a>
+      <a href="#route">Map</a>
+      <a href="#vehicles">Compare</a>
+      <a href="#notes">Notes</a>
+      <a href="#feedback">Feedback</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-shade"></div>
+      <div class="hero-content wrap">
+        <div class="date-ribbon">19 DEC 2026 — 5 JAN 2027</div>
+        <p class="eyebrow">THE GREAT SOUTHERN CROSSING</p>
+        <h1>PERTH TO<br>ADELAIDE</h1>
+        <p class="script">Family Road Trip</p>
+        <p class="subtitle">Two Adults. Two Kids. One Epic Adventure.</p>
+        <div class="stats">
+          <div><span>◫</span><b>18 DAYS</b><small>Total trip</small></div>
+          <div><span>⌁</span><b>~5,600 KM</b><small>Balanced return</small></div>
+          <div><span>☾</span><b>NO NIGHT DRIVING</b><small>Family-first pace</small></div>
+          <div><span>☺</span><b>FAMILY FRIENDLY</b><small>Breaks every 1.5–2h</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="options" class="section wrap">
+      <div class="section-heading"><span></span><h2>Choose Your Adventure</h2><span></span></div>
+      <p class="section-lede">Compare the three family route styles, then vote and leave changes for the group.</p>
+      <div class="option-grid" id="optionGrid"></div>
+    </section>
+
+    <section class="dashboard-grid wrap">
+      <aside class="panel overview">
+        <h3>Trip Overview</h3>
+        <dl>
+          <div><dt>Start</dt><dd>19 Dec 2026</dd></div>
+          <div><dt>End</dt><dd>5 Jan 2027</dd></div>
+          <div><dt>Total</dt><dd>18 Days</dd></div>
+          <div><dt>Daily Drive</dt><dd>4–6 hours</dd></div>
+          <div><dt>Night Driving</dt><dd>None planned</dd></div>
+          <div><dt>Core Route</dt><dd>Nullarbor / Eyre Hwy</dd></div>
+        </dl>
+        <div class="safety-box"><strong>Road rule for this plan</strong><p>Leave early, refuel conservatively and be off remote roads before dusk.</p></div>
+        <div class="vibe">90's<br><b>ROAD TRIP</b><br>VIBES!</div>
+      </aside>
+
+      <section class="panel itinerary-panel">
+        <div class="panel-title-row">
+          <div><p class="label">SELECTED ROUTE</p><h3 id="itineraryTitle">Option 1 — Balanced</h3></div>
+          <button class="mini-button" id="toggleReturn">Show Return</button>
+        </div>
+        <div id="itineraryList" class="itinerary-list"></div>
+      </section>
+
+      <aside class="side-stack">
+        <section id="route" class="panel route-card">
+          <h3>Route Overview</h3>
+          <div class="route-map" aria-label="Stylised route from Perth to Adelaide">
+            <div class="route-line"></div><span class="perth">Perth</span><span class="adelaide">Adelaide</span>
+            <i class="pin p1"></i><i class="pin p2"></i><i class="pin p3"></i><i class="pin p4"></i><i class="pin p5"></i>
+          </div>
+          <div class="route-stats"><span><b>~2,800 km</b>One way</span><span><b>6</b>Driving days</span><span><b>5</b>Core stops</span></div>
+        </section>
+
+        <section id="feedback" class="panel feedback">
+          <h3>Family Feedback</h3>
+          <p class="muted">Vote for the currently selected option.</p>
+          <div class="vote-buttons">
+            <button data-vote="prefer">😊<span>Prefer</span></button>
+            <button data-vote="maybe">😐<span>Maybe</span></button>
+            <button data-vote="no">🙁<span>No</span></button>
+          </div>
+          <p class="feedback-status" id="feedbackStatus">No vote saved on this device yet.</p>
+        </section>
+
+        <section id="notes" class="panel notes">
+          <h3>Family Notes</h3>
+          <form id="noteForm">
+            <input id="noteName" maxlength="20" placeholder="Name" required>
+            <textarea id="noteText" maxlength="220" placeholder="Suggest a change, stop, hotel or activity…" required></textarea>
+            <button type="submit">Add note</button>
+          </form>
+          <div id="noteList" class="note-list"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section id="vehicles" class="section wrap">
+      <div class="section-heading"><span></span><h2>Vehicle & Accommodation Options</h2><span></span></div>
+      <div class="vehicle-grid">
+        <article class="vehicle-card recommended"><div class="vehicle-emoji">🚙</div><h3>BMW X3</h3><p class="vehicle-sub">Hotels / Cabins</p><ul><li>Best daily comfort and agility</li><li>No towing setup at overnight stops</li><li>Lower fuel use than caravan options</li><li>Easiest option for the 5–6h target</li></ul><strong>RECOMMENDED</strong></article>
+        <article class="vehicle-card"><div class="vehicle-emoji">🚙 + 🏕️</div><h3>X3 + Caravan</h3><p class="vehicle-sub">Lightweight setup only</p><ul><li>More living space and flexibility</li><li>Longer elapsed driving days</li><li>Crosswind and overtaking workload</li><li>Exact towing limits must be verified</li></ul><strong>CHECK TOWING SPECS</strong></article>
+        <article class="vehicle-card"><div class="vehicle-emoji">🚐</div><h3>4-Berth Motorhome</h3><p class="vehicle-sub">Hire vehicle</p><ul><li>All-in-one road-trip experience</li><li>No caravan hitching required</li><li>Higher Christmas-period rental cost</li><li>Larger vehicle at towns and attractions</li></ul><strong>PREMIUM OPTION</strong></article>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <div class="wrap"><span>♛</span><blockquote>“The open road is calling, and we must go.”</blockquote><span>♛</span></div>
+    </section>
+  </main>
+
+  <footer class="footer">Royal Roads · Perth → Adelaide · Summer 2026/27</footer>
+  <script src="app.js"></script>
+</body>
+</html>

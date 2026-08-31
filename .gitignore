@@ -1,5 +1,11 @@
-.DS_Store
+node_modules/
+dist/
+cdk.out/
 .env
 .env.*
-.vercel
-node_modules/
+!.env.example
+.DS_Store
+*.log
+coverage/
+.vscode/
+.idea/

@@ -1,0 +1,9 @@
+{
+  "name": "@roadtrip/backend",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.883.0"
+  }
+}

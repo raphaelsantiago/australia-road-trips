@@ -2,31 +2,100 @@
 
 ## Royal Roads — Perth to Adelaide Family Adventure
 
-A responsive family road-trip planning portal for the 19 Dec 2026 to 5 Jan 2027 Perth → Adelaide trip.
+AWS-oriented monorepo for the family road-trip planning portal covering 19 Dec 2026 to 5 Jan 2027.
 
-### Included in the first build
+## Repository structure
 
-- Royal 90s visual theme based on the approved mockup direction
-- Three itinerary options: Balanced, Scenic WA and Scenic SA
-- Outbound / return itinerary switching
-- Daily distance, drive-time and suggested overnight-stop cards
-- BMW X3 / caravan / motorhome comparison
-- Family voting per route option
-- Family notes and change suggestions
-- Responsive desktop / tablet / mobile layout
-- No build tool required: plain HTML, CSS and JavaScript
+```text
+apps/
+  frontend/        Royal Roads web UI (Vite + HTML/CSS/JS)
+  backend/         Lambda API for family votes and notes
+infra/
+  cdk/             AWS CDK infrastructure
+packages/
+  shared/          Shared route/vote constants
+```
 
-### Run locally
+## AWS architecture
 
-Open `index.html` in a browser, or serve the repository with any static web server.
+- **Frontend:** Amazon S3 private bucket + CloudFront
+- **API:** Amazon API Gateway HTTP API
+- **Compute:** AWS Lambda (Node.js 22)
+- **Data:** Amazon DynamoDB on-demand table
+- **Infrastructure as Code:** AWS CDK v2
 
-### Current persistence model
+The CDK stack keeps the S3 bucket and DynamoDB table private and retained by default. CloudFront uses origin access control to serve the site.
 
-Votes and notes are stored in browser `localStorage` for the prototype. They are device-local and are not yet shared between family members.
+## Local setup
 
-### Next phase
+Requirements: Node.js 20+ and npm.
 
-1. Deploy to a temporary domain.
-2. Add username/password protection.
-3. Replace localStorage with shared server-side storage so family votes and notes sync across devices.
-4. Add live maps, researched accommodation links and attraction detail pages.
+```bash
+npm install
+npm run dev
+```
+
+Frontend production build:
+
+```bash
+npm run build
+```
+
+## Environment variables
+
+Copy `.env.example` to your preferred local environment file and populate values as required.
+
+- `VITE_API_BASE_URL` — frontend API endpoint, used when the frontend is wired to shared persistence.
+- `WEB_ALLOWED_ORIGIN` — CORS origin supplied to the API/Lambda stack.
+- `AWS_REGION` / `CDK_DEFAULT_REGION` — defaults to `ap-southeast-2` if not set.
+- `CDK_DEFAULT_ACCOUNT` — optional explicit CDK account override.
+
+Do not commit real secrets or credentials.
+
+## CDK workflow
+
+Bootstrap once per AWS account/region if required:
+
+```bash
+npx cdk bootstrap
+```
+
+Review infrastructure:
+
+```bash
+npm run cdk:synth
+npm run cdk:diff
+```
+
+Deploy after verifying the generated template and environment configuration:
+
+```bash
+npm run cdk:deploy
+```
+
+The root deploy script builds `apps/frontend/dist` before CDK packages and uploads the frontend assets.
+
+## Current application state
+
+The existing Royal Roads UI includes:
+
+- Balanced Nullarbor route
+- Scenic WA route via Esperance/Lucky Bay
+- Scenic SA / Eyre Peninsula route
+- Outbound and return itinerary switching
+- Vehicle/accommodation comparison
+- Family voting
+- Family notes
+- Responsive parchment/navy/gold theme
+
+The current frontend still uses browser `localStorage` for votes and notes. `apps/backend` provides the AWS API foundation for moving those features to shared DynamoDB persistence in the next application integration pass.
+
+## Backend API
+
+- `GET /health`
+- `GET /feedback?option=balanced`
+- `POST /feedback`
+- `GET /notes?option=balanced`
+- `POST /notes`
+
+No AWS credentials, access keys, passwords or deployed URLs are committed to this repository.

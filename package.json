@@ -1,0 +1,21 @@
+{
+  "name": "australia-road-trips",
+  "version": "0.2.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "infra/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm --workspace @roadtrip/frontend run dev",
+    "build": "npm --workspace @roadtrip/frontend run build",
+    "preview": "npm --workspace @roadtrip/frontend run preview",
+    "cdk:synth": "npm run build && npm --workspace @roadtrip/cdk run synth",
+    "cdk:diff": "npm run build && npm --workspace @roadtrip/cdk run diff",
+    "cdk:deploy": "npm run build && npm --workspace @roadtrip/cdk run deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
